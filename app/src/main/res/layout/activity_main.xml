@@ -35,17 +35,18 @@
 
             <ImageView
                 android:id="@+id/ivLogo"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="24dp"
+                android:layout_marginBottom="16dp"
                 android:src="@drawable/auto_reply"
                 android:contentDescription="App Logo" />
 
+            <!-- Enable Toggle Card -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="16dp"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="4dp"
                 app:strokeWidth="0dp">
@@ -54,7 +55,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="20dp"
+                    android:padding="16dp"
                     android:gravity="center_vertical">
 
                     <LinearLayout
@@ -74,7 +75,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Runs in background"
+                            android:text="Service runs in background"
                             android:textColor="#000000"
                             android:textSize="14sp" />
                     </LinearLayout>
@@ -86,6 +87,7 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- Messages Card -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -99,30 +101,87 @@
                     android:orientation="vertical"
                     android:padding="20dp">
 
+                    <!-- Incoming Call Message -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="12dp"
-                        android:text="Your Message"
+                        android:layout_marginBottom="6dp"
+                        android:text="Incoming Call Message"
                         android:textColor="#000000"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Type your auto reply here..."
+                        android:layout_marginBottom="16dp"
                         app:boxStrokeColor="#1976D2"
                         app:hintTextColor="#1976D2">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/etMessage"
+                            android:id="@+id/etIncoming"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="top"
                             android:inputType="textMultiLine"
-                            android:lines="5"
+                            android:lines="3"
+                            android:textColor="#000000" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Outgoing Call Message -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="6dp"
+                        android:text="Outgoing Call Message"
+                        android:textColor="#000000"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        app:boxStrokeColor="#1976D2"
+                        app:hintTextColor="#1976D2">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etOutgoing"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="top"
+                            android:inputType="textMultiLine"
+                            android:lines="3"
+                            android:textColor="#000000" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Missed Call Message -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="6dp"
+                        android:text="Missed Call Message"
+                        android:textColor="#000000"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        app:boxStrokeColor="#1976D2"
+                        app:hintTextColor="#1976D2">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etMissed"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="top"
+                            android:inputType="textMultiLine"
+                            android:lines="3"
                             android:textColor="#000000" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -130,8 +189,8 @@
                         android:id="@+id/btnSave"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
-                        android:layout_marginTop="20dp"
-                        android:text="Save Message"
+                        android:layout_marginTop="8dp"
+                        android:text="Save Messages"
                         android:textAllCaps="false"
                         app:cornerRadius="12dp" />
                 </LinearLayout>

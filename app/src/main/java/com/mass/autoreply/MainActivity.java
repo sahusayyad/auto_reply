@@ -27,7 +27,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private static final int PERMISSION_REQUEST_CODE = 100;
-    private TextInputEditText etMessage;
+    private TextInputEditText etIncoming, etOutgoing, etMissed;
     private SwitchMaterial serviceSwitch;
     private SharedPreferences prefs;
 
@@ -44,22 +44,30 @@ public class MainActivity extends AppCompatActivity {
         });
 
         prefs = getSharedPreferences("AutoReplyPrefs", MODE_PRIVATE);
-        etMessage = findViewById(R.id.etMessage);
+        etIncoming = findViewById(R.id.etIncoming);
+        etOutgoing = findViewById(R.id.etOutgoing);
+        etMissed = findViewById(R.id.etMissed);
         serviceSwitch = findViewById(R.id.serviceSwitch);
         MaterialButton btnSave = findViewById(R.id.btnSave);
 
         // Load saved state
-        etMessage.setText(prefs.getString("reply_message", "I'm busy right now, I'll call you back."));
+        etIncoming.setText(prefs.getString("incoming_message", "I'm busy right now, I'll call you back."));
+        etOutgoing.setText(prefs.getString("outgoing_message", "I'll get back to you shortly."));
+        etMissed.setText(prefs.getString("missed_message", "Sorry I missed your call. I will call you back soon."));
         serviceSwitch.setChecked(prefs.getBoolean("service_enabled", false));
 
         btnSave.setOnClickListener(v -> {
-            String message = etMessage.getText().toString();
-            if (!message.isEmpty()) {
-                prefs.edit().putString("reply_message", message).apply();
-                Toast.makeText(this, "Message saved!", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "Please enter a message.", Toast.LENGTH_SHORT).show();
-            }
+            String incoming = etIncoming.getText().toString();
+            String outgoing = etOutgoing.getText().toString();
+            String missed = etMissed.getText().toString();
+
+            prefs.edit()
+                    .putString("incoming_message", incoming)
+                    .putString("outgoing_message", outgoing)
+                    .putString("missed_message", missed)
+                    .apply();
+
+            Toast.makeText(this, "Messages saved!", Toast.LENGTH_SHORT).show();
         });
 
         serviceSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -145,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
                 serviceSwitch.setChecked(true);
                 startReplyService();
             } else {
-                Toast.makeText(this, "Permissions denied! App cannot start background service.", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Permissions denied!", Toast.LENGTH_SHORT).show();
                 serviceSwitch.setChecked(false);
             }
         }
